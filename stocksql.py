@@ -279,7 +279,7 @@ def send_email():
             connection.sendmail(
                 from_addr='從哪寄',
                 to_addrs='寄給誰',
-            # to_addrs='han870419@gmail.com',
+            # to_addrs='66666@gmail.com',
                 msg=f"Subject:要開盤囉!以下是周轉率結果\n\n{message}\n".encode("utf-8")
         )
 
@@ -371,7 +371,7 @@ import datetime
 
 stock_symbols =exsmall60
 
-# 建立資料庫連線
+
 conn = pymysql.connect(host="127.0.0.1", port=3306, user="root", password="ivan6403", db="stock60", charset="utf8")
 
 try:
@@ -388,21 +388,21 @@ try:
         """
         cursor.execute(create_table_sql)
         
-        # 準備 SQL 語句
+       
         insert_sql = f"INSERT INTO {table_name} (symbol) VALUES (%s)"
         
-        # 對每支股票執行迴圈，插入資料到新建立的資料表中
+        
         for symbol in stock_symbols:
-            # 取得股票代號
+            
             values = (symbol,)
-            # 執行 SQL 語句
+           
             cursor.execute(insert_sql, values)
         
-    # 提交變更
+    
     conn.commit()
     print("資料插入成功！")
 except Exception as e:
-    # 發生錯誤時回滾變更
+    
     conn.rollback()
     print("資料插入失敗:", e)
 finally:
